@@ -1,0 +1,103 @@
+1. Difference between Comparable and Comparator?
+2. Whene should we go for comparable and when should we go for comparator?
+3. How many constructors are there in Optional class?
+Ans: Two types parameterized and non parameterized
+String[] words = new String[10];
+        Optional<String> checkNull
+            = Optional.ofNullable(words[5]);
+        if (checkNull.isPresent()) {
+            String word = words[5].toLowerCase();
+            System.out.print(word);
+        }
+4. What are all the methods are available in Optional class?
+Ans: If value is not-present , If value is present 
+5. What's the main purpose of use of Optional class?Ans:as a way to address the common problem of null pointer exceptions. By using Optional, you can avoid NullPointerExceptions and write cleaner code
+6. What is stream in java?
+It is used to process the collection of object, A stream is a sequency of objects that supports various method and can be pipelined to produce the desire result. A stream 
+7. What are all the features are added in java 8/11 ?
+7.What is method referencing in Java?
+Ans.Method reference is used to refer method of functional interface. It is compact and easy form of lambda expression. Each time when you are using lambda expression to just referring a method, you can replace your lambda expression with method reference.
+8. Differnce between static and default method in interface?
+Ans.
+9. What is functional interface ? And what are all predefined functional interfaces are available in java??
+Examples of predefined Java functional interfaces are Runnable, Comparable, ActionListener, Callable, etc. Functional interfaces can be divided into the following types: Consumer and Bi-consumer. Predicate and Bi-predicate
+10. what is the use of lambda expression ? Write down code, whice represent lambda expression.
+to provide the implementation of Functional interface.
+we don't need to define the method again for providing the implementation. Here, we just write the implementation code.
+(argument-list) -> {body}  
+11. List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
+ Q1. Write the logic to find out highest number from the list using stream function.
+  List<Integer> numbers = Arrays.asList(5, 9, 11, 2, 8, 21, 1);
+  int max1 = numbers.stream().max(Integer::compare).get();
+        System.out.println("\nLargest number using "
+                + "max(Integer::compare).get() is = "
+                + max1);
+ Using Copmaprator
+ Int max3 = numbers.stream().max(Comparator.naturalOrder()).get();
+ using mapToInt
+  int max5 = numbers.stream().mapToInt(Integer::intValue).max().getAsInt();
+ Q2. Write the logic to find out highest repeted number from the list using stream function.
+list.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting())).entrySet().stream().filter(m -> m.getValue() > 1)       
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toSet());
+12. What is spring-boot? Diff btwn Spring and SpringBoot?
+13. How many components are there in springBoot?1.Spring Boot Starters 2.Spring Boot AutoConfigurator 3.Spring Boot CLI 4.Spring Boot Actuator
+14. Explain about @SpringBootApplication? used to mark a configuration class that declares one or more @Bean methods and also triggers auto-configuration and component scanning. It's same as declaring a class with @Configuration, @EnableAutoConfiguration and @ComponentScan annotations.
+15. What's the use of Actuator?
+Actuator is mainly used to expose operational information about the running application — health, metrics, info, dump, env, etc. It uses HTTP endpoints or JMX beans to enable us to interact with it.
+16. How many SterioType Annotations are there in SpringBoot?@Component, @Service, @Repository, and @Controller
+17. Can we use @Controller instead of @Service?
+18. What is the default port available in SpringBoot? Can we change the default port of the server, if Yes, how many way we can change server port in SpringBoot?
+19. Can we change inbuilt server in SpringBoot?? How to change internal server in spring boot (In pom.xml file  need to Exclude the Spring-boot-stater dependency and we can use the what ever server needed)
+20. How to configure Spring Security ??
+21. Diff btwn yml and property file??
+22. what is Spring Initializer?
+23. Explain Microservice Architecture?
+24. fail-fast and fail-safe, with an example
+25. Write the code for controller layer for insert, update and delete operation of an emplyee data.
+26. Diff btwn PathParam and PathVariable.@PathParam: it is used to inject the value of named URI path parameters that were defined in @Path expression. @Pathvariable: This annotation is used to handle template variables in the request URI mapping ,and used them as method parameters
+27. Diff btwn Soap and Rest??
+28. Howmany types of design pattern you know? Explain Singleton Design Pattern.
+
+Stream Api
+
+List<Integer> myList = Arrays.asList(10,15,8,49,25,98,98,32,15,100,100);
+//Given a list of integers, find out each numbers occurance exist in the list using Stream functions?
+	    myList.stream().collect(Collectors.groupingBy(s -> s+"", LinkedHashMap::new, Collectors.counting())).entrySet().forEach(System.out::println);  
+        //Given a list of integers, find out all the even numbers exist in the list using Stream functions?
+//        myList.stream().filter(e -> e%2==0).forEach(System.out::println);
+
+        //Given a list of integers, find out all the numbers starting with 1 using Stream functions?
+//        myList.stream().map(s -> s + "").filter(s -> s.startsWith("1")).forEach(System.out::println);
+        //How to find duplicate elements in a given integers list in java using Stream functions?
+//        Set<Integer> s = new HashSet<>();
+//        myList.stream().filter(e -> !s.add(e)).collect(Collectors.toSet()).forEach(System.out::println);
+        //Given the list of integers, find the first element of the list using Stream functions?
+//        myList.stream().limit(1).forEach(System.out::println);
+        //Alternative
+//        myList.stream().findFirst().ifPresent(System.out::println);
+        //Given a list of integers, find the total number of elements present in the list using Stream functions?
+//        System.out.println(myList.stream().count());
+        //Given a list of integers, find the maximum value element present in it using Stream functions?
+//        myList.stream().max((a,b)-> a-b).ifPresent(System.out::println);
+        //Given a String, find the first non-repeated character in it using Stream functions?
+        String input = "Jjava Coding Alive is Awesome";
+//        input.chars().mapToObj(s -> Character.toLowerCase(Character.valueOf((char) s)))
+//                .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
+//                .entrySet().stream().filter(e -> e.getValue()==1L)
+//                .map(Map.Entry::getKey).findFirst().ifPresent(System.out::println);
+        //Given a String, find the first repeated character in it using Stream functions?
+//        input.chars().mapToObj(s -> Character.toLowerCase(Character.valueOf((char) s)))
+//                .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
+//                .entrySet().stream()
+//                .filter(e -> e.getValue()>1L)
+//                .map(Map.Entry::getKey).findFirst()
+//                .ifPresent(System.out::println);
+        //Count the number of words with length more than two. {"John","Cat","CAT","LOTUS","lotus"}
+//        System.out.println(Stream.of("John","Cat","CAT","LOTUS","lotus", "aa", "aaaaaa").filter(e -> e.length()>2).count());
+        //Print all the 1st char as Capital in each word
+//        Stream.of("john","cat","cAT","lOTUS","lotus", "aa", "aaaaaa")
+//                .map(e -> e.replaceFirst(String.valueOf(e.charAt(0)), String.valueOf(Character.toUpperCase(e.charAt(0)))))
+//                .forEach(System.out::println);
+Stream API Interview Practice.txt
+Displaying Stream API Interview Practice.txt.
