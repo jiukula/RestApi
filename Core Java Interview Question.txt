@@ -1,0 +1,149 @@
+JAVA INTERVIEW QUESTIONS
+
+Core Java
+What is immutability and how to achieve it?
+ Why is String only immutable in java?
+ How does immutability work internally?
+What is serialization?. How can I customize it?
+What is a Marker Interface?
+Does Java support multiple Inheritance??
+Why doesn't Java support multiple Inheritance??
+
+Design Patterns
+Singleton Design Pattern:
+What is Double checked locking mechanism?.
+Factory
+Difference between Factory and Abstract Factory?
+
+Collection Framework
+How to avoid collisions in LinkedList?
+What are Fail-Fast and Fail-Safe Iterators?
+What is the difference between ArrayList and LinkedList?
+HashMap internal Implementation?
+Differences between ConcurrentHashMap, HashMap and WeakHashMap?
+
+Multi Threading
+What is the lifecycle of a Thread?
+How to enable Multi Threading in the application and explain one real time scenario where we can use that?.
+
+Java-8 Features
+Explain features of java8?
+What is lambda expression and how to achieve it??
+What is Functional interface and what are the advantages of Functional interface??
+What is Optional class and what is the use of Optional??
+Explain key features of Stream API???
+Diff between Map and Filter??
+Diff between Map and FlatMap??
+Map() can be used where we have to mapthe element the particular collection to a certain function and then we need to return the stream which contains the updated results. Ex:- Multiplying all the elements of list by 3 and returning the updated result.
+FlatMap() can be used where we have to flaten or transformation out the string as we cannot flatten our string using map().
+Example:Getting the first charcter of all the string present in a list of Strings and returning the result in from of a strem.
+HashMap improvement in Java8??
+
+Spring Boot
+What are the components available in Spring Boot?
+Explain briefly about different annotations available in springBoot??? 1.@Bean,servive,repesitory,configuration,controller,requestMapping,@autowired,@component,@Springbootapplication,@Enableautoconfiguration
+What is Spring Boot Actuator and what does it do?
+How to enable security in SpringBoot applications?
+Difference between Authentication and authorisation?
+How to implement SpringBoot exceptions in application??
+Briefly explain how to handle Custom exceptions??
+What are the advantages of Spring Boot over Spring?
+ @component and @Serevice diff ??
+ How to get value from property file??
+ Why do we use @service instead of @component??
+ How to decide which type of Response format to send from the controller??
+ @Postmapping and @Getmapping are different??
+ Why use @post\get mapping instead of @RequestMapping??
+ When should we use @postmapping and When should we use @putmapping??
+@controller drawbacks over @Restcontoller??
+ How to avoid interface ambiguity error in springBoot application??
+Advantages of yaml file over properties file??
+Where do we write DB configurations in SpringBoot Application??
+ Use of Devtools and its key features??
+ Use of Actuator and its key features??
+Diff Between Rest and SOAP??
+Drawbacks of Restful web services??
+Drawbacks of SOAP web services??
+
+Hibernate/JPA
+What is the difference between JPA and Hibernate?
+What is the advantage of Hibernate over JDBC?
+Explain JPA /Hibernate Configuration ??
+Explain briefly about different annotations available in Hibernate???
+
+Junit
+  
+Why do we write test cases??
+How to write test cases for void method??
+
+Maven
+What is packaging?
+What is the Maven build lifecycle?
+
+Tools
+Spring security configuration
+Swagger configuration
+Explain GitHub flow
+How to resolve conflicts
+Which tool do you use to test Rest APIs and what other tools are available??
+
+Microservices
+ How to know which type of method requests accept any end point??
+ If any error occurred in a particular endpoint how can we handle that.??
+ How to know if a particular endpoint is down state??
+ Use of Service Registry??
+ Use of circuit breaker??
+
+Logicals
+Write a program to print character occurrences from a sentence in descending order??
+Write a program to find the number of vowels and consonants available in a string descending order??
+Write a logic to give the increment to the employees of an organisation followed by below conditions??
+If the salary is >5k give an increment of 2k.
+If the salary is >10k give an increment of 1.5k.
+If the salary is >15k give an increment of 1k.
+Write  a program to find the 2nd largest salary of the employee of an organisation??
+Write a program to find out the employee info from the employees of the organisation list who has got the highest salary of each organisation??
+
+
+Stream Api
+
+List<Integer> myList = Arrays.asList(10,15,8,49,25,98,98,32,15,100,100);
+//Given a list of integers, find out each numbers occurance exist in the list using Stream functions?
+	    myList.stream().collect(Collectors.groupingBy(s -> s+"", LinkedHashMap::new, Collectors.counting())).entrySet().forEach(System.out::println);  
+        //Given a list of integers, find out all the even numbers exist in the list using Stream functions?
+//        myList.stream().filter(e -> e%2==0).forEach(System.out::println);
+
+        //Given a list of integers, find out all the numbers starting with 1 using Stream functions?
+//        myList.stream().map(s -> s + "").filter(s -> s.startsWith("1")).forEach(System.out::println);
+        //How to find duplicate elements in a given integers list in java using Stream functions?
+//        Set<Integer> s = new HashSet<>();
+//        myList.stream().filter(e -> !s.add(e)).collect(Collectors.toSet()).forEach(System.out::println);
+        //Given the list of integers, find the first element of the list using Stream functions?
+//        myList.stream().limit(1).forEach(System.out::println);
+        //Alternative
+//        myList.stream().findFirst().ifPresent(System.out::println);
+        //Given a list of integers, find the total number of elements present in the list using Stream functions?
+//        System.out.println(myList.stream().count());
+        //Given a list of integers, find the maximum value element present in it using Stream functions?
+//        myList.stream().max((a,b)-> a-b).ifPresent(System.out::println);
+        //Given a String, find the first non-repeated character in it using Stream functions?
+        String input = "Jjava Coding Alive is Awesome";
+//        input.chars().mapToObj(s -> Character.toLowerCase(Character.valueOf((char) s)))
+//                .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
+//                .entrySet().stream().filter(e -> e.getValue()==1L)
+//                .map(Map.Entry::getKey).findFirst().ifPresent(System.out::println);
+        //Given a String, find the first repeated character in it using Stream functions?
+//        input.chars().mapToObj(s -> Character.toLowerCase(Character.valueOf((char) s)))
+//                .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
+//                .entrySet().stream()
+//                .filter(e -> e.getValue()>1L)
+//                .map(Map.Entry::getKey).findFirst()
+//                .ifPresent(System.out::println);
+        //Count the number of words with length more than two. {"John","Cat","CAT","LOTUS","lotus"}
+//        System.out.println(Stream.of("John","Cat","CAT","LOTUS","lotus", "aa", "aaaaaa").filter(e -> e.length()>2).count());
+        //Print all the 1st char as Capital in each word
+//        Stream.of("john","cat","cAT","lOTUS","lotus", "aa", "aaaaaa")
+//                .map(e -> e.replaceFirst(String.valueOf(e.charAt(0)), String.valueOf(Character.toUpperCase(e.charAt(0)))))
+//                .forEach(System.out::println);
+
+cqsr
